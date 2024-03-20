@@ -14,6 +14,8 @@ git submodule update --init --remote -- $submodule_path
 
 # Check if there are any changes
 if ! git diff --quiet --exit-code $submodule_path; then
+    git config user.name "GitHub Actions"
+    git config user.email "actions@github.com"
     # Commit the changes
     git add $submodule_path
     git commit -m "Update submodule $submodule_name"
