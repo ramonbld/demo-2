@@ -1,0 +1,33 @@
+name: Update Demo.txt with Submodule SHA
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dags/**' # Monitor changes in a specific directory
+
+jobs:
+  update-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Kubernetes Repo Code
+        uses: actions/checkout@v3
+        with:
+          repository: ramonbld/demo-2
+          ssh-key: ${{ secrets.SSH_KEY }}
+          submodules: 'recursive'
+
+      - name: Update demo.txt
+        run: |
+          submodule_path=./demo-1/
+          cd $submodule_path
+          sha=$(git rev-parse HEAD)
+          echo $sha > ../demo.txt
+          cd .. # Go back to the root directory of the repository
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add demo.txt
+          git commit -m "Update demo.txt with the latest submodule commit SHA"
+          git push
+
