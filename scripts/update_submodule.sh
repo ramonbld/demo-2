@@ -10,6 +10,7 @@ submodule_name=$1
 submodule_path="submodules/$submodule_name"
 
 # Fetch latest changes from the submodule's main branch
+git pull --recurse-submodules
 git submodule update --init --remote -- $submodule_path
 
 # Check if there are any changes
