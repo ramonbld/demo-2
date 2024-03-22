@@ -1,9 +1,3 @@
-[submodule "submodules/demo-1"]
-	path = submodules/demo-1
-	url = https://github.com/ramonbld/demo-1
-[submodule "submodules/demo-3"]
-	path = submodules/demo-3
-	url = https://github.com/ramonbld/demo-3
 [submodule "submodules/demo-4"]
 	path = submodules/demo-4
 	url = git@github-bld:ramonbld/demo-4.git
